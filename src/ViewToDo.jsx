@@ -14,7 +14,7 @@ import React from 'react';
 class ViewToDo extends React.Component {
 
     render() {
-      let newList = this.props.toDoList.map(item => (<div onClick={this.props.onClickDelete(item.todoItemId)}> {item.name}</div>));
+      let newList = this.props.toDoList.map((item) => (<button key={item.todoItemId} onClick={()=>this.props.onDelete(item.todoItemId)}> {item.name}</button>));
 
       return (
         <div className="card">

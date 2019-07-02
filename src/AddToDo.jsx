@@ -5,12 +5,12 @@ export default (props) => (
         <div className="card-header">Add New Todo</div>
         <div className="card-body">
             <div>
-                <label for="newToDo"><strong>I want to..</strong></label>
+                <label><strong>I want to..</strong></label>
                 <textarea className="form-control" id="newToDo" name="newToDo" rows="6" cols="50">
                 </textarea>
                 
                 <div className="form-group">
-                    <label for="newToDoPriority"><strong>How much of a priority is this?</strong></label>
+                    <label><strong>How much of a priority is this?</strong></label>
                     <select className="form-control" id="newToDoPriority"
                         name="newToDoPriority"      
                     >

@@ -16,7 +16,7 @@ class App extends Component {
     let itemIndex = this.getItemIndex(itemID);
 
     if (itemIndex != null){
-        let item = toDoList[itemIndex];
+        //let item = toDoList[itemIndex];
         toDoList.splice(itemIndex, 1);
         this.setState({
           toDoList: toDoList
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
 
     const hrStyle = {
-      'border-color': 'white',
+      'borderColor': 'white',
     };
 
     return (
@@ -56,7 +56,7 @@ class App extends Component {
           <div className="col-sm-8">
             <ViewToDo 
               toDoList={this.state.toDoList}
-              onClickDelete={(i) => this.deleteItem(i)}
+              onDelete={(i) => this.deleteItem(i)}
             />
           </div>
         </div>
