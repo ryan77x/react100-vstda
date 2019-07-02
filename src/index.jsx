@@ -28,4 +28,4 @@ let toDoItems = [
     }
 ];
 
-ReactDOM.render(<App list={toDoItems}/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

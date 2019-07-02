@@ -7,8 +7,24 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      toDoList: props.list
+      toDoList: [],
+      biggestIDNumber: 0,
     };
+  }
+
+  addItem(item){
+    let toDoList = this.state.toDoList;
+    let newItem = item;
+    let todoItemId = this.state.biggestIDNumber;
+
+    newItem.todoItemId = todoItemId;
+    newItem.completed = false;
+
+    toDoList.push(newItem);
+    this.setState({
+      toDoList: toDoList,
+      biggestIDNumber: todoItemId+1,
+    })
   }
 
   deleteItem(itemID){
@@ -16,7 +32,6 @@ class App extends Component {
     let itemIndex = this.getItemIndex(itemID);
 
     if (itemIndex != null){
-        //let item = toDoList[itemIndex];
         toDoList.splice(itemIndex, 1);
         this.setState({
           toDoList: toDoList
@@ -51,7 +66,9 @@ class App extends Component {
 
         <div className="row">
           <div className="col-sm-4" >
-            <AddToDo />
+            <AddToDo 
+              onAdd={(item) => this.addItem(item)}
+            />
           </div>
           <div className="col-sm-8">
             <ViewToDo 
