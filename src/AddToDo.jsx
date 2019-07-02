@@ -23,10 +23,19 @@ class AddToDo extends React.Component {
     }
 
     handleAddClick(event){
+        let toDoPriority = this.state.toDoPriority;
+
+        if (toDoPriority === ''){
+            toDoPriority = 1;
+        }
+        else{
+            toDoPriority = Number(toDoPriority);
+        }
+
         let item = {
             todoItemId: 0,
             name: this.state.toDoDescription,
-            priority: this.state.toDoPriority,
+            priority: toDoPriority,
             completed: false
         }
 
