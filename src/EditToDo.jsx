@@ -37,7 +37,7 @@ class EditToDo extends React.Component {
     return (
           <div>
             <label><strong>Description</strong></label>
-            <textarea className="form-control" id="description" rows="6" cols="50"
+            <textarea className="update-todo-text form-control" id="description" rows="6" cols="50"
                     name="description"   
                     value={this.state.description}
                     onChange={this.handleInputChange}>
@@ -45,7 +45,7 @@ class EditToDo extends React.Component {
           
             <div className="form-group">
                 <label><strong>Priority</strong></label>
-                <select className="form-control" id="priority"
+                <select className="update-todo-priority form-control" id="priority"
                     name="priority"
                     value={this.state.priority}
                     onChange={this.handleInputChange}>
@@ -55,7 +55,7 @@ class EditToDo extends React.Component {
                     <option value="3">High Priority</option>
                 </select>
             </div>
-            <button className="btn btn-success" name="saveButton" onClick={this.handleSaveClick}>Save</button>
+            <button className="update-todo btn btn-success" name="saveButton" onClick={this.handleSaveClick}>Save</button>
           </div>
         );
     }

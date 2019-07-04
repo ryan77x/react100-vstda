@@ -109,7 +109,7 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <h1 className="text-white">Very Simple To Do App</h1>
+        <h1 className="text-white">Very Simple ToDo App</h1>
         <p className="text-white">Track all of the things</p>
         <hr style={hrStyle}/>
 

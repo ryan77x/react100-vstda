@@ -50,15 +50,16 @@ class AddToDo extends React.Component {
             <div className="card-body">
                 <div>
                     <label><strong>I want to..</strong></label>
-                    <textarea className="form-control" id="description" rows="6" cols="50"
+                    <textarea className="create-todo-text form-control" id="description" rows="6" cols="50"
                             name="description"   
                             value={this.state.description} 
                             onChange={this.handleInputChange}>
                     </textarea>
                     
                     <div className="form-group">
+                        <br/>
                         <label><strong>How much of a priority is this?</strong></label>
-                        <select className="form-control" id="priority"
+                        <select className="create-todo-priority form-control" id="priority"
                             name="priority"
                             value={this.state.priority} 
                             onChange={this.handleInputChange}>
@@ -71,7 +72,7 @@ class AddToDo extends React.Component {
                 </div>
             </div>
             <div className="card-footer">
-                <button className="btn btn-success btn-block" name="addButton" onClick={this.handleAddClick}>Add</button>
+                <button className="create-todo btn btn-success btn-block" name="addButton" onClick={this.handleAddClick}>Add</button>
             </div>
         </div>
         );
