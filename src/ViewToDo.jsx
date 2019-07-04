@@ -14,8 +14,6 @@ import React from 'react';
 class ViewToDo extends React.Component {
 
     render() {
-      //let newList = this.props.toDoList.map((item) => (<button key={item.todoItemId} onClick={()=>this.props.onDelete(item.todoItemId)}> {item.name}</button>));
-
       let colorList = ['success', 'secondary', 'info', 'warning', 'danger', 'primary', 'dark', 'light'];
       let i = -1;
       let color = "";
@@ -28,16 +26,11 @@ class ViewToDo extends React.Component {
         }
 
         color = "list-group-item list-group-item-" + colorList[i];
-        return <li className={color} key={item.todoItemId} onClick={()=>this.props.onDelete(item.todoItemId)}> 
-          <span><input type="checkbox" name="completed" value="false"/>
-          </span>
+        return <li className={color} key={item.todoItemId}> 
+          <input type="checkbox" name="completed" value={item.completed} onChange={()=>this.props.onUpdateItemStatus(item.todoItemId)}/>
           {item.name}
-          <span className="pull-right">
-            <button className="btn btn-xs btn-info">CCS</button>
-            <button className="btn btn-xs btn-warning">
-              <span className="glyphicon glyphicon-trash"></span>
-            </button>
-          </span>
+          <button className="btn" onClick={()=>this.props.onDelete(item.todoItemId)}><i className="fa fa-trash-o" id="deleteItem"></i></button>
+          <button className="btn"><i className="fa fa-edit" id="editItem"></i></button>
           </li>
 
       }); 
@@ -45,13 +38,11 @@ class ViewToDo extends React.Component {
       return (
         <div className="card">
           <div className="card-header">View Todos</div>
-          <div className="card-body">
-              <ul className="list-group">
-                  {  
-                    newList 
-                  }        
-              </ul>
-          </div>
+            <ul className="list-group">
+              {  
+                newList 
+              }        
+            </ul>
         </div>
       );
     }

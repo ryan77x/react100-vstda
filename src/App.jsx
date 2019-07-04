@@ -12,8 +12,24 @@ class App extends Component {
     };
   }
 
+  updateItemStatus(itemID){
+    //make a deep copy
+    let toDoList = [...this.state.toDoList];
+    let itemIndex = this.getItemIndex(itemID);
+
+    if (itemIndex != null){
+      toDoList[itemIndex].completed = !toDoList[itemIndex].completed;
+      this.setState({
+        toDoList: toDoList
+      })
+    }
+    else{
+        console.log("Item does not exist");
+    }
+  }
+
   addItem(item){
-    let toDoList = this.state.toDoList;
+    let toDoList = [...this.state.toDoList];
     let newItem = item;
     let todoItemId = this.state.biggestIDNumber;
 
@@ -28,7 +44,7 @@ class App extends Component {
   }
 
   deleteItem(itemID){
-    let toDoList = this.state.toDoList;
+    let toDoList = [...this.state.toDoList];
     let itemIndex = this.getItemIndex(itemID);
 
     if (itemIndex != null){
@@ -73,7 +89,8 @@ class App extends Component {
           <div className="col-sm-8">
             <ViewToDo 
               toDoList={this.state.toDoList}
-              onDelete={(i) => this.deleteItem(i)}
+              onDelete={(itemID) => this.deleteItem(itemID)}
+              onUpdateItemStatus={(itemID) => this.updateItemStatus(itemID)}
             />
           </div>
         </div>
