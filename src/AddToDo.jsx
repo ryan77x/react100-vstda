@@ -4,8 +4,8 @@ class AddToDo extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            toDoDescription: '',
-            toDoPriority: '',
+            description: '',
+            priority: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -16,52 +16,52 @@ class AddToDo extends React.Component {
         const target = event.target;
         const name = target.name;
         const value = target.value;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
     }
 
     handleAddClick(event){
-        let toDoPriority = this.state.toDoPriority;
+        let priority = this.state.priority;
 
-        if (toDoPriority === ''){
-            toDoPriority = 1;
+        if (priority === ''){
+            priority = 1;
         }
         else{
-            toDoPriority = Number(toDoPriority);
+            priority = Number(priority);
         }
 
         let item = {
-            todoItemId: 0,
-            name: this.state.toDoDescription,
-            priority: toDoPriority,
-            completed: false
+            id: 0,
+            description: this.state.description,
+            priority: priority,
+            completed: false,
+            editEnabled: false,
         }
 
         this.props.onAdd(item);
     }
 
     render() {
-      return (
+        return (
         <div className="card">
             <div className="card-header">Add New Todo</div>
             <div className="card-body">
                 <div>
                     <label><strong>I want to..</strong></label>
-                    <textarea className="form-control" id="toDoDescription" rows="6" cols="50"
-                            name="toDoDescription"   
-                            value={this.state.toDoDescription} 
+                    <textarea className="form-control" id="description" rows="6" cols="50"
+                            name="description"   
+                            value={this.state.description} 
                             onChange={this.handleInputChange}>
                     </textarea>
                     
                     <div className="form-group">
                         <label><strong>How much of a priority is this?</strong></label>
-                        <select className="form-control" id="toDoPriority"
-                            name="toDoPriority"
-                            value={this.state.toDoPriority} 
-                            onChange={this.handleInputChange}      
-                        >
+                        <select className="form-control" id="priority"
+                            name="priority"
+                            value={this.state.priority} 
+                            onChange={this.handleInputChange}>
                             <option value="" selected disabled hidden>Select a Priority</option>
                             <option value="1">Low Priority</option>
                             <option value="2">Mid Priority</option>
@@ -74,7 +74,7 @@ class AddToDo extends React.Component {
                 <button className="btn btn-success btn-block" name="addButton" onClick={this.handleAddClick}>Add</button>
             </div>
         </div>
-      );
+        );
     }
-  }
+}
 export default AddToDo;

@@ -12,12 +12,31 @@ class App extends Component {
     };
   }
 
-  updateItemStatus(itemID){
+  updateItem(item){
     //make a deep copy
     let toDoList = [...this.state.toDoList];
-    let itemIndex = this.getItemIndex(itemID);
+    let newItem = item;
+    let itemIndex = this.getItemIndex(this.state.idOfEditItem);
 
     if (itemIndex != null){
+      toDoList[itemIndex].description = newItem.description;
+      toDoList[itemIndex].priority = newItem.priority;
+      toDoList[itemIndex].editEnabled = newItem.editEnabled;
+      this.setState({
+        toDoList: toDoList
+      })
+    }
+    else{
+        console.log("Item does not exist");
+    }
+  }
+  
+  updateItemStatus(item){
+    let toDoList = [...this.state.toDoList];
+    let itemIndex = this.getItemIndex(item.id);
+
+    if (itemIndex != null){
+      //toDoList[itemIndex].completed = item.completed;
       toDoList[itemIndex].completed = !toDoList[itemIndex].completed;
       this.setState({
         toDoList: toDoList
@@ -28,18 +47,32 @@ class App extends Component {
     }
   }
 
+  enableItemEdit(itemID){
+    let toDoList = [...this.state.toDoList];
+    let itemIndex = this.getItemIndex(itemID);
+
+    if (itemIndex != null){
+      toDoList[itemIndex].editEnabled = true;
+      this.setState({
+        toDoList: toDoList,
+      })
+    }
+    else{
+        console.log("Item does not exist");
+    }
+  }
+
   addItem(item){
     let toDoList = [...this.state.toDoList];
     let newItem = item;
-    let todoItemId = this.state.biggestIDNumber;
+    let id = this.state.biggestIDNumber;
 
-    newItem.todoItemId = todoItemId;
-    newItem.completed = false;
+    newItem.id = id;
 
     toDoList.push(newItem);
     this.setState({
       toDoList: toDoList,
-      biggestIDNumber: todoItemId+1,
+      biggestIDNumber: id+1,
     })
   }
 
@@ -61,7 +94,7 @@ class App extends Component {
   getItemIndex(itemId){
     let toDoList = this.state.toDoList;
     for (let i=0; i<toDoList.length; i++){
-        if (toDoList[i].todoItemId == itemId){
+        if (toDoList[i].id == itemId){
             return i;
         }
     }
@@ -90,7 +123,9 @@ class App extends Component {
             <ViewToDo 
               toDoList={this.state.toDoList}
               onDelete={(itemID) => this.deleteItem(itemID)}
-              onUpdateItemStatus={(itemID) => this.updateItemStatus(itemID)}
+              onUpdateItemStatus={(item) => this.updateItemStatus(item)}
+              onUpdateItem={(item) => this.updateItem(item)}
+              onEnableItemEdit={(itemID) => this.enableItemEdit(itemID)}
             />
           </div>
         </div>
