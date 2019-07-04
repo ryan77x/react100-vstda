@@ -16,12 +16,13 @@ class App extends Component {
     //make a deep copy
     let toDoList = [...this.state.toDoList];
     let newItem = item;
-    let itemIndex = this.getItemIndex(this.state.idOfEditItem);
+    let itemIndex = this.getItemIndex(newItem.id);
 
     if (itemIndex != null){
       toDoList[itemIndex].description = newItem.description;
       toDoList[itemIndex].priority = newItem.priority;
       toDoList[itemIndex].editEnabled = newItem.editEnabled;
+
       this.setState({
         toDoList: toDoList
       })
@@ -36,7 +37,6 @@ class App extends Component {
     let itemIndex = this.getItemIndex(item.id);
 
     if (itemIndex != null){
-      //toDoList[itemIndex].completed = item.completed;
       toDoList[itemIndex].completed = !toDoList[itemIndex].completed;
       this.setState({
         toDoList: toDoList

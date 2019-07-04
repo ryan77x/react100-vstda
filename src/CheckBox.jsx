@@ -19,10 +19,7 @@ class CheckBox extends React.Component {
         [name]: checked
       });
 
-      //below codes need debugging
-      let newItem = this.props.item;
-      newItem.completed = this.state.completed;
-      this.props.onUpdateItemStatus(newItem);
+      this.props.onUpdateItemStatus(this.props.item);
   }
 
   render(){
