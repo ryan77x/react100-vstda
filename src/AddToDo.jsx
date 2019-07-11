@@ -23,24 +23,26 @@ class AddToDo extends React.Component {
     }
 
     handleAddClick(event){
-        let priority = this.state.priority;
+        if (this.state.description.trim() !== ''){
+            let priority = this.state.priority;
 
-        if (priority === ''){
-            priority = 1;
-        }
-        else{
-            priority = Number(priority);
-        }
+            if (priority === ''){
+                priority = 1;
+            }
+            else{
+                priority = Number(priority);
+            }
 
-        let item = {
-            id: 0,
-            description: this.state.description,
-            priority: priority,
-            completed: false,
-            editEnabled: false,
-        }
+            let item = {
+                id: 0,
+                description: this.state.description,
+                priority: priority,
+                completed: false,
+                editEnabled: false,
+            }
 
-        this.props.onAdd(item);
+            this.props.onAdd(item);
+         }
     }
 
     render() {

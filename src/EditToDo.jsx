@@ -23,14 +23,16 @@ class EditToDo extends React.Component {
   }
 
   handleSaveClick(event){
-    let newItem = this.props.item;
-    let priority = this.state.priority;
-    priority = Number(priority);
+    if (this.state.description.trim() !== ''){
+      let newItem = this.props.item;
+      let priority = this.state.priority;
+      priority = Number(priority);
 
-    newItem.description = this.state.description;
-    newItem.priority = priority;
-    newItem.editEnabled = false;
-    this.props.onUpdateItem(newItem);
+      newItem.description = this.state.description;
+      newItem.priority = priority;
+      newItem.editEnabled = false;
+      this.props.onUpdateItem(newItem);
+    }
   }
 
   render(){

@@ -36,7 +36,7 @@ class ViewToDo extends React.Component {
           return <li className={color} key={item.id}>  
             <EditToDo 
               item={item}
-              onUpdateItem={() => this.props.onUpdateItem(item)}
+              onUpdateItem={(item) => this.props.onUpdateItem(item)}
             />
             </li>
         }
@@ -44,7 +44,7 @@ class ViewToDo extends React.Component {
           return <li className={color} key={item.id}> 
             <CheckBox 
               item={item}
-              onUpdateItemStatus={() => this.props.onUpdateItemStatus(item)}
+              onUpdateItemStatus={(item) => this.props.onUpdateItemStatus(item)}
             />
             {item.description}
             <button className="delete-todo btn" onClick={()=>this.props.onDelete(item.id)}><i className="fa fa-trash-o" id="deleteItem"></i></button>
